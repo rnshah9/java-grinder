@@ -1,0 +1,6 @@
+project: rnshah9/java-grinder
+target: java-grinder
+tests: null
+
+cmds:
+  - cmd: /repo/java_grinder @@ out amiga
