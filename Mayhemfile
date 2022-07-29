@@ -2,4 +2,4 @@ project: java-grinder
 target: java-grinder
 
 cmds:
-  - cmd: /repo/java_grinder @@ out amiga
+  - cmd: /java_grinder @@ out amiga
