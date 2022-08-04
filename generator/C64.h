@@ -61,6 +61,9 @@ public:
   virtual int c64_vic_sprite_expandy();
   virtual int c64_vic_write_pointer();
   virtual int c64_vic_read_pointer();
+  virtual int c64_vic_write_interrupt_status();
+  virtual int c64_vic_read_interrupt_status();
+  virtual int c64_vic_interrupt_control();
   virtual int c64_vic_sprite_priority();
   virtual int c64_vic_sprite_multicolor_enable();
   virtual int c64_vic_sprite_expandx();
@@ -68,9 +71,9 @@ public:
   virtual int c64_vic_data_collision();
   virtual int c64_vic_border();
   virtual int c64_vic_background();
-  virtual int c64_vic_background1();
-  virtual int c64_vic_background2();
-  virtual int c64_vic_background3();
+  virtual int c64_vic_multi1();
+  virtual int c64_vic_multi2();
+  virtual int c64_vic_multi3();
   virtual int c64_vic_sprite_multicolor0();
   virtual int c64_vic_sprite_multicolor1();
   virtual int c64_vic_sprite0color();
@@ -94,6 +97,8 @@ public:
   virtual int c64_vic_make_text_table();
   virtual int c64_vic_make_color_table();
   virtual int c64_vic_color_ram_clear();
+  virtual int c64_vic_copy_uppercase();
+  virtual int c64_vic_copy_lowercase();
 
 protected:
   int label_count;
@@ -111,6 +116,8 @@ protected:
   bool need_c64_vic_make_text_table:1;
   bool need_c64_vic_make_color_table:1;
   bool need_c64_vic_color_ram_clear:1;
+  bool need_c64_vic_copy_uppercase:1;
+  bool need_c64_vic_copy_lowercase:1;
 
   void insert_c64_vic_hires_enable();
   void insert_c64_vic_hires_clear();
@@ -124,6 +131,8 @@ protected:
   void insert_c64_vic_make_text_table();
   void insert_c64_vic_make_color_table();
   void insert_c64_vic_color_ram_clear();
+  void insert_c64_vic_copy_uppercase();
+  void insert_c64_vic_copy_lowercase();
 };
 
 #endif

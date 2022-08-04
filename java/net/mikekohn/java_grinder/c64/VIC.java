@@ -76,8 +76,11 @@ public class VIC
   public static int read_pointer() { return 0; }
 
   // 0xd019
+  public static void write_interrupt_status(int value) { }
+  public static int read_interrupt_status() { return 0; }
 
   // 0xd01a
+  public static void interrupt_control(int value) { }
 
   // 0xd01b
   public static void sprite_priority(int value) { }
@@ -101,13 +104,13 @@ public class VIC
   public static void background(int value) { }
 
   // 0xd022
-  public static void background1(int value) { }
+  public static void multi1(int value) { }
 
   // 0xd023
-  public static void background2(int value) { }
+  public static void multi2(int value) { }
 
   // 0xd024
-  public static void background3(int value) { }
+  public static void multi3(int value) { }
 
   // 0xd025
   public static void sprite_multicolor0(int value) { }
@@ -151,5 +154,7 @@ public class VIC
   public static void make_text_table() { }
   public static void make_color_table() { }
   public static void color_ram_clear(int value) { }
+  public static void copy_uppercase() { }
+  public static void copy_lowercase() { }
 }
 

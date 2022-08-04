@@ -27,9 +27,6 @@ public:
   virtual int start_init();
   virtual int insert_static_field_define(std::string &name, std::string &type, int index);
   virtual int init_heap(int field_count);
-  //virtual int field_init_boolean(char *name, int index, int value);
-  //virtual int field_init_byte(char *name, int index, int value);
-  //virtual int field_init_short(char *name, int index, int value);
   virtual int field_init_int(std::string &name, int index, int value);
   virtual int field_init_ref(std::string &name, int index);
   virtual void method_start(int local_count, int max_stack, int param_count, std::string &name);
@@ -39,9 +36,6 @@ public:
   virtual int push_ref_static(std::string &name, int index);
   virtual int push_fake();
   virtual int push_int(int32_t n);
-  virtual int push_long(int64_t n);
-  //virtual int push_float(float f);
-  //virtual int push_double(double f);
   virtual int push_ref(std::string &name);
   virtual int pop_local_var_int(int index);
   virtual int pop_local_var_ref(int index);
@@ -54,11 +48,8 @@ public:
   virtual int sub_integer();
   virtual int sub_integer(int const_val);
   virtual int mul_integer();
-  virtual int mul_integer(int const_val);
   virtual int div_integer();
-  virtual int div_integer(int const_val);
   virtual int mod_integer();
-  virtual int mod_integer(int const_val);
   virtual int neg_integer();
   virtual int shift_left_integer();
   virtual int shift_left_integer(int const_val);
@@ -105,14 +96,21 @@ public:
   virtual int array_write_byte(std::string &name, int field_id);
   virtual int array_write_short(std::string &name, int field_id);
   virtual int array_write_int(std::string &name, int field_id);
-  virtual int get_values_from_stack(int);
-  //virtual void close();
 
   // Memory API
   virtual int memory_read8_I();
   virtual int memory_write8_IB();
   virtual int memory_read16_I();
   virtual int memory_write16_IS();
+  virtual int memory_addressOf_aB();
+  virtual int memory_addressOf_aS();
+  virtual int memory_addressOf_aC();
+  virtual int memory_addressOf_aI();
+
+  // Math API
+  virtual int math_abs_I();
+  virtual int math_min_II();
+  virtual int math_max_II();
 
 protected:
   virtual int get_int_size() { return 2; }
@@ -130,7 +128,6 @@ protected:
   bool need_sub_integer:1;
   bool need_mul_integer:1;
   bool need_div_integer:1;
-  bool need_mod_integer:1;
   bool need_neg_integer:1;
   bool need_shift_left_integer:1;
   bool need_shift_right_integer:1;
@@ -151,12 +148,15 @@ protected:
   bool need_memory_read16:1;
   bool need_memory_write16:1;
 
+  bool need_math_max:1;
+  bool need_math_min:1;
+  bool need_math_abs:1;
+
   void insert_swap();
   void insert_add_integer();
   void insert_sub_integer();
   void insert_mul_integer();
   void insert_div_integer();
-  void insert_mod_integer();
   void insert_neg_integer();
   void insert_shift_left_integer();
   void insert_shift_right_integer();
@@ -176,6 +176,10 @@ protected:
   void insert_memory_write8();
   void insert_memory_read16();
   void insert_memory_write16();
+
+  void insert_math_max();
+  void insert_math_min();
+  void insert_math_abs();
 };
 
 #endif
